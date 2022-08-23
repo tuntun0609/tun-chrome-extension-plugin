@@ -1,0 +1,49 @@
+{
+  "name": "tun-chrome-extension-plugin",
+  "version": "1.0.0",
+  "description": "开发浏览器插件(v3)的webpack plugin",
+  "license": "MIT",
+  "main": "dist/tun-chrome-extension-plugin.js",
+  "types": "dist/tun-chrome-extension-plugin.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "clean": "del-cli --dot=true \"./dist/**/*\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && npm run build.compile && npm run build.types",
+    "build.compile": "cross-env babel src -d dist --verbose --extensions .ts --ignore */**/*.d.ts,**/**/*.test.ts",
+    "build.types": "cross-env tsc --project tsconfig.types.json",
+    "lint": "eslint --ext .js, .ts src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuntun0609/tun-chrome-extension-plugin.git"
+  },
+  "homepage": "https://github.com/tuntun0609/tun-chrome-extension-plugin",
+  "keywords": [
+    "chrome-extension",
+    "plugin"
+  ],
+  "author": "tuntun",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/lodash": "^4.14.184",
+    "@types/node": "^18.7.11",
+    "@typescript-eslint/eslint-plugin": "^5.34.0",
+    "@typescript-eslint/parser": "^5.34.0",
+    "cross-env": "^7.0.3",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.26.0",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
