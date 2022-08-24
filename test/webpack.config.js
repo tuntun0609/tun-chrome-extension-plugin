@@ -1,19 +1,23 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Configuration } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const WebpackBar = require('webpackbar');
-const { resolvePath } = require('../scripts/path');
+const path = require('path');
+
+const { ChromeExtensionPlugin } = require('../dist/chrome-extension-plugin');
+
+const resolvePath = relativePath => path.resolve(__dirname, relativePath);
 
 /**
  * @type {Configuration}
  */
 module.exports = {
-	entry: resolvePath('../src/chrome-extension-plugin.ts'),
+	entry: resolvePath('./manifest.json'),
 	output: {
-		path: resolvePath('../dist'),
+		path: resolvePath('./dist'),
 		filename: '[name].js',
 	},
+	mode: 'production',
 	module: {
 		rules: [
 			{
@@ -29,14 +33,14 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.ts'],
-		alias: {
-			'@': resolvePath('../../src'),
-		},
+		// extensions: ['.js', '.ts'],
+		// alias: {
+		// 	'@': resolvePath('../../src'),
+		// },
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
-		new ESLintPlugin(),
 		new WebpackBar(),
+		new ChromeExtensionPlugin(),
 	],
 };

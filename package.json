@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "del-cli --dot=true \"./dist/**/*\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run clean && npm run build.compile && npm run build.types",
+    "build": "npm run clean && npm run build.compile",
     "build.compile": "cross-env babel src -d dist --verbose --extensions .ts --ignore */**/*.d.ts,**/**/*.test.ts",
     "build.types": "cross-env tsc --project tsconfig.types.json",
     "lint": "eslint --ext .js, .ts src/"
@@ -35,6 +35,7 @@
     "@types/node": "^18.7.11",
     "@typescript-eslint/eslint-plugin": "^5.34.0",
     "@typescript-eslint/parser": "^5.34.0",
+    "child_process": "^1.0.2",
     "cross-env": "^7.0.3",
     "del-cli": "^5.0.0",
     "eslint": "^8.22.0",
